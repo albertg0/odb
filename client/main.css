@@ -1,0 +1,86 @@
+
+
+
+body {
+  padding: 10px;
+ 
+  
+  width:95%;
+  height: auto;
+  background-color: rgba(69, 90, 100);
+  color: lightgray;
+}
+h2{
+  font-family: 'Roboto Mono';
+}
+.row{
+  margin-bottom: -1em;
+}
+
+.deleteCard{
+  visibility: hidden;
+  right:0;
+}
+
+#tableList{
+  width:100%;
+  padding:2%;
+  box-shadow: cyan;
+}
+.tableListDiv{
+  position:relative;
+  width: 100%;
+
+  height: auto;
+
+  box-shadow: 5px 10px cyan;
+
+}
+.itemContainer{
+  width:100%;
+  position: relative;
+  padding-left: 2%;
+  height:auto;
+}
+
+.thead{
+  color: rgb(236, 239, 241);
+  
+}
+#closeDialog{
+  outline: none;
+  right: 0;
+  top: 0;
+  position:absolute;
+}
+
+#addItem{
+  bottom:0;
+  right:0;
+  position: absolute;
+ 
+
+}
+
+.itemDiv{
+  position:relative;
+  z-index: 99999;
+}
+.dialog{
+  z-index:9999;
+}
+
+.cardContainer{
+  height:80%;
+  position: relative;
+
+}
+
+.cardColor{
+
+}
+
+.cardPickedColor{
+  background-color:purple;
+}
+
