@@ -4,6 +4,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { ShopnList } from '../imports/api/shopnList.js'
 import './main.html';
 
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
 function makeid() {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -14,21 +18,66 @@ function makeid() {
   return text;
 }
 
+function createCORSRequest(method, url){
+  var xhr = new XMLHttpRequest();
+  var x = xhr.getResponseHeader('Content-Type')
+  console.log(x);
+
+  if ("withCredentials" in xhr){
+      xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined"){
+      xhr = new XDomainRequest();
+      xhr.open(method, url);
+  } else {
+      xhr = null;
+  }
+  return xhr;
+}
+
 
 Template.body.events({
   'click #addItem': function (event){
 
-    var dialog = document.querySelector('dialog');
-    dialog.show();
+    var m = document.querySelectorAll('.modal')
+    var inst = M.Modal.init(m);
+    
+    inst[0].open();
   
   },
   'submit .newItem': function(event){
     event.preventDefault();
     const target = event.target;
     const n = target.iName.value;
+
+    
+    
+    var request = createCORSRequest("GET", "https://www.heb.com/");
+    
+    request.send();
+    request.onreadystatechange = function(){
+      if(this.readyState== this.HEADERS_RECEIVED){
+        print(this.getAllResponseHeaders());
+      }
+    }
+    if(request) 
+    {
+      request.onload = function(data) {
+        console.log(data);
+      };
+
+      request.onerror = function(event)
+      {
+        console.log(event);
+      }
+    }
+    //request.onreadystatechange = handler;
+    request.send();
+
+
     const p = target.iPrice.value;
     
-    dialog = document.querySelector('dialog');
+    m = document.querySelectorAll('.modal');
+    var inst = M.Modal.init(m);
     var item = {"name":n,"price":p}
 
     console.log("Item: ", item)
@@ -39,12 +88,14 @@ Template.body.events({
 
     target.iName.value = "";
     target.iPrice.value = "";
-    dialog.close(); 
+    inst[0].close(); 
 
   },
   'click #closeDialog': function(event){
-    var dialog = document.querySelector('dialog');
-    dialog.close();
+    event.preventDefault();
+    var m = document.querySelectorAll('.modal');
+    var inst = M.Modal.init(m);
+    inst[0].close();
   },
   'click .itemContainer':function(event){
     console.log(event.target.id);
