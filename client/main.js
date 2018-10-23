@@ -6,7 +6,6 @@ import './main.html';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
 
 function makeid() {
   var text = "";
@@ -40,26 +39,27 @@ Template.body.events({
 
     var m = document.querySelectorAll('.modal')
     var inst = M.Modal.init(m);
-    
+
     inst[0].open();
-  
+
   },
   'submit .newItem': function(event){
     event.preventDefault();
     const target = event.target;
     const n = target.iName.value;
 
-    
-    
-    var request = createCORSRequest("GET", "https://www.heb.com/");
-    
-    request.send();
-    request.onreadystatechange = function(){
-      if(this.readyState== this.HEADERS_RECEIVED){
+
+
+    //var request = createCORSRequest("GET", "https://www.heb.com/");
+
+    //request.send();
+    //request.onreadystatechange = function(){
+    /*
+    if(this.readyState== this.HEADERS_RECEIVED){
         print(this.getAllResponseHeaders());
       }
     }
-    if(request) 
+    if(request)
     {
       request.onload = function(data) {
         console.log(data);
@@ -72,10 +72,10 @@ Template.body.events({
     }
     //request.onreadystatechange = handler;
     request.send();
-
+*/
 
     const p = target.iPrice.value;
-    
+
     m = document.querySelectorAll('.modal');
     var inst = M.Modal.init(m);
     var item = {"name":n,"price":p}
@@ -88,7 +88,7 @@ Template.body.events({
 
     target.iName.value = "";
     target.iPrice.value = "";
-    inst[0].close(); 
+    inst[0].close();
 
   },
   'click #closeDialog': function(event){
@@ -99,13 +99,13 @@ Template.body.events({
   },
   'click .itemContainer':function(event){
     console.log(event.target.id);
-    
+
     targetId= event.target.id;
     ShopnList.remove({'_id':targetId});
   },
 
   'click .card':function(event){
-  
+
     console.log($(event.target));
         if($(event.currentTarget).hasClass("cardPickedColor"))
         {
@@ -129,15 +129,15 @@ Template.list.helpers({
   },
   totalPrice(){
     var items = ShopnList.find({});
- 
+
     var total = 0.0;
     const list = items.fetch();
-    
+
     for(var i =0; i<list.length;i++)
     {
       total += Number(list[i].item.price);
     }
-    
+
     return total;
   },
   newId()

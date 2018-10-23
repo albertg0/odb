@@ -38,25 +38,25 @@
       <gcse:search></gcse:search>
 
 </div>
-    
-      
+
+
 
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script
+    <!--script
     src="https://code.jquery.com/jquery-3.3.1.slim.js"
     integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
-    crossorigin="anonymous"></script>
-  
+    crossorigin="anonymous"></script-->
+
 
  <!--
     <script type="text/javascript" src="../imports/js/materialize.min.js"></script>
 -->
   {{> list}}
- 
+
 </body>
 
 <template name='list'>
@@ -66,28 +66,28 @@
         <button class="modal-close" id='closeDialog'>X</button>
         <h6 class="mdl-dialog__title">Add Item</h6>
         <!-- Textfield with Floating Label -->
-      
+
        <form class="newItem modal-content" action="#">
           <div class="input-group mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <span class="input-group-addon">$</span>
             <input class="mdl-textfield__input form-control" type="text" name="iName" id="itemName">
             <label class="mdl-textfield__label" for="itemName">Item name</label>
             </div>
-      
+
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input form-control" type="number" name="iPrice" pattern="-?[0-9]*(\.[0-9]+)?" id="itemPrice">
             <label class="mdl-textfield__label" for="itemPrice">Price</label>
- 
+
           </div>
           <button value = "Submit" id="addToList" class="btn pull-right modal-close">Add to list</button>
-      
+
         </form>
-      
+
     </div>
-    
+
 
   <div id="tableListDiv" >
-     
+
 
   <!--div id="cardContainer">
         {{#each items}}
@@ -95,31 +95,31 @@
           <div class="col s12 m6">
             <div class="card blue-grey darken-1 cardColor" id= {{this._id}}>
               <div class="card-content white-text cardColor">
-                
+
                 <span class="card-title"> {{item.name}} | {{item.price}} <span class="card deleteCard" > X </span> </span>
-                
-                
+
+
               </div>
             </div>
           </div>
         </div>
         {{/each}}
   </div-->
-      
+
   <table id="tableList" class="highlight">
 
     <thead>
-    
+
     </thead>
-  
+
     {{#each items}}
     <div class = "itemContainer" id= {{this._id}} >
       <tr> <th>{{ item.name }} </th> <th>{{ item.price }}</th> </tr>
     </div>
 
     {{/each}}
-   
-    
+
+
   </table>
   <tfoot>
       <tr> <tr></tr>
@@ -127,12 +127,12 @@
       </tr>
   </tfoot>
   </div>
-    
 
-<div id="addItemButtDiv">
 
-  <button id= "addItem" class="waves-effect waves-light btn modal-trigger pull-right" data-target="#newItemModal"> + </button>
-</div>
+  <div id="addItemButtDiv">
+
+    <button id= "addItem" class="waves-effect waves-light btn modal-trigger pull-right" data-target="#newItemModal"> + </button>
+  </div>
 
 
 
